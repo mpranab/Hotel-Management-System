@@ -1,0 +1,11 @@
+package com.Staff;
+
+import org.springframework.web.bind.annotation.GetMapping;
+
+public class StaffController {
+
+	@GetMapping("/Staff")
+	public String Hello() {
+		return "Hello World!!";
+	}
+}
