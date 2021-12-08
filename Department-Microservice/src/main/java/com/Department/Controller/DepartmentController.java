@@ -21,7 +21,7 @@ import com.Department.Service.Departmentservice;
 public class DepartmentController {
 
 	@Autowired
-	private Departmentservice service;
+	Departmentservice service;
 
 	@GetMapping("/hello")
 	public String hello() {
