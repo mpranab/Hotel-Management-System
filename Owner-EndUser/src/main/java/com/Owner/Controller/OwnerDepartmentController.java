@@ -29,30 +29,30 @@ public class OwnerDepartmentController {
 
 	@PostMapping("/add")
 	public Department addDept(@RequestBody Department dept) {
-		return restTemplate.postForObject("http://Department-Microservice/department/add/", dept, Department.class);
+		return restTemplate.postForObject("http://localhost:8085/department/add", dept, Department.class);
 
 	}
 
 	@GetMapping("/findAll")
 	public DepartmentList getAlldept() {
-		return restTemplate.getForObject("http://Department-Microservice/department/findAll/", DepartmentList.class);
+		return restTemplate.getForObject("http://localhost:8085/department/findAll/", DepartmentList.class);
 	}
 
 	@GetMapping("/findById/{id}")
 	public Department getEmp(@PathVariable("id") String id) {
-		return restTemplate.getForObject("http://Department-Microservice/department/findById/" + id, Department.class);
+		return restTemplate.getForObject("http://localhost:8085/department/findById/" + id, Department.class);
 
 	}
 
 	@PutMapping("/update")
 	public Department updateRoom(@RequestBody Department dept) {
-		restTemplate.put("http://Department-Microservice/department/update", dept, Department.class);
+		restTemplate.put("http://localhost:8085/department/update", dept, Department.class);
 		return dept;
 	}
 
 	@DeleteMapping("/delete/{id}")
 	public String deleteDepartment(@PathVariable("id") String id) {
-		restTemplate.delete("http://Department-Microservice/department/delete/" + id);
+		restTemplate.delete("http://localhost:8085/department/delete/" + id);
 		return "Deleted room " + id;
 	}
 

@@ -16,4 +16,6 @@ spring:
         uri: http://localhost:8082/
         predicates:
         - Path=/Manager/**
-      
+
+server:
+      port: 9999      
