@@ -13,25 +13,19 @@ import com.Owner.Models.Room;
 import com.Owner.Models.RoomList;
 
 @RestController
-@RequestMapping("/Owner/Room")
+@RequestMapping("/Owner/rooms")
 public class OwnerRoomController {
-	
+
 	@Autowired
 	private RestTemplate restTemplate;
-	
+
 	@GetMapping("/findAllRoom")
-	public RoomList getRoom() 
-	{
-		return restTemplate.getForObject("http://Room-Microservice/rooms/findAllRoom/", RoomList.class);
+	public RoomList getRoom() {
+		return restTemplate.getForObject("http://localhost:8086/rooms/findAllRoom/", RoomList.class);
 	}
-	
-	
+
 	@GetMapping("/findById/{id}")
-	public Room getRoom(@PathVariable("id") String id) 
-	{
-		return restTemplate.getForObject("http://Room-Microservice/rooms/findById/"+id, Room.class);
+	public Room getRoom(@PathVariable("id") String id) {
+		return restTemplate.getForObject("http://localhost:8086/rooms/findById/" + id, Room.class);
 	}
-	
-
-
 }

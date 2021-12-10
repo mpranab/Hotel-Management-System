@@ -16,17 +16,15 @@ public class OwnerStaffController {
 
 	@Autowired
 	private RestTemplate restTemplate;
-	
+
 	@GetMapping("/getAllEmp")
-	public StaffList getAllEmp() 
-	{
-		return restTemplate.getForObject("http://Staff-Microservice/Staff/getAllEmp/", StaffList.class);
+	public StaffList getAllEmp() {
+		return restTemplate.getForObject("http://localhost:8088/Staff/getAllEmp/", StaffList.class);
 	}
-	
+
 	@GetMapping("/getByEmp/{id}")
-	public Staff getEmp(@PathVariable("id") String id) 
-	{
-		return restTemplate.getForObject("http://Staff-Microservice/Staff/getByEmp/"+id, Staff.class);
+	public Staff getEmp(@PathVariable("id") String id) {
+		return restTemplate.getForObject("http://localhost:8088/Staff/getByEmp/" + id, Staff.class);
 	}
-	
+
 }
