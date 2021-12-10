@@ -1,13 +1,15 @@
 package com.Receptionist.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/Receptionist")
 public class ReceptionistController {
 
-	@GetMapping("/Receptionist")
-	public String Hello() {
-		return "Hello World!!";
+	@GetMapping("/hello")
+	public String hello() {
+		return "Hello Receptionist!!";
 	}
 }
