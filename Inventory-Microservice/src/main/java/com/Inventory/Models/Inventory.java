@@ -3,7 +3,7 @@ package com.Inventory.Models;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "Inventary")
+@Document(collection = "Inventory")
 public class Inventory {
 	
 	@Id
