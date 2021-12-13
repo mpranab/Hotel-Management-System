@@ -18,11 +18,7 @@ public class OwnerSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private OwnerService ownerService;
 
-	/*
-	 * @Override public void configure(WebSecurity web) throws Exception {
-	 * web.ignoring().antMatchers("/v2/api-docs", "/swagger-resources/**",
-	 * "/swagger-ui.html", "/webjars/**"); }
-	 */
+	
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -32,7 +28,7 @@ public class OwnerSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.csrf().disable().authorizeRequests().antMatchers("/owner/addOwner", "/owner/auth").permitAll().anyRequest()
+		http.csrf().disable().authorizeRequests().antMatchers("/Owner/addOwner", "/Owner/auth").permitAll().anyRequest()
 				.authenticated().and().formLogin();
 	}
 

@@ -19,11 +19,7 @@ public class OwnerService implements UserDetailsService {
 	@Autowired
 	private OwnerRepository ownerRepo;
 
-	/*
-	 * //for creating/adding washer[ public Washer addWasher(Washer washer) { return
-	 * washerRepository.save(washer); }
-	 */
-//
+	
 	public List<OwnerInformation> getOwnerInfos() {
 		List<OwnerInformation> ownerInfos = ownerRepo.findAll();
 		System.out.println("Getting Owner from DB" + ownerInfos);
