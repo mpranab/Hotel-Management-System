@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.Owner.Service.OwnerService;
 
+@SuppressWarnings("deprecation")
 @EnableWebSecurity
 public class OwnerSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -32,6 +33,7 @@ public class OwnerSecurityConfig extends WebSecurityConfigurerAdapter {
 				.authenticated().and().formLogin();
 	}
 
+	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return NoOpPasswordEncoder.getInstance();
