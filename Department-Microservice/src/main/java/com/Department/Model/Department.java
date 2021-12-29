@@ -3,9 +3,11 @@ package com.Department.Model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+//It is used to identify a domain object, which is persisted to MongoDB.
 @Document(collection = "Department Details")
 public class Department {
 
+	// It allows to specify exactly one id.(primary key).
 	@Id
 	private long departmentID;
 	private String departmentName;

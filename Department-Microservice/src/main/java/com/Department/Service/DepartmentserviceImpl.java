@@ -12,6 +12,7 @@ import com.Department.Repository.DepartmentRepo;
 @Service
 public class DepartmentserviceImpl implements Departmentservice {
 
+	// It is used for initializing an interface.
 	@Autowired
 	private DepartmentRepo repo;
 
@@ -31,6 +32,7 @@ public class DepartmentserviceImpl implements Departmentservice {
 		return repo.save(dept);
 	}
 
+	// In order to avoid NullPointerException we use Optional<>.
 	@Override
 	public Optional<Department> getDepartment(long id) {
 		return repo.findById(id);

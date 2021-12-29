@@ -27,6 +27,7 @@ public class OwnerController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
+	//Adding Owner.
 	@PostMapping("/addOwner")
 	private ResponseEntity<?> saveOwnerInfo(@RequestBody OwnerInformation ownerInfo) {
 		String email = ownerInfo.getEmail();
@@ -43,6 +44,8 @@ public class OwnerController {
 		return ResponseEntity.ok(new OwnerAuthResponse("Successfully created Owner " + email));
 	}
 
+	
+	//Authenticating owner
 	@PostMapping("/auth")
 	private ResponseEntity<?> authOwner(@RequestBody OwnerInformation ownerInfo) {
 		String email = ownerInfo.getEmail();
@@ -55,6 +58,7 @@ public class OwnerController {
 		return ResponseEntity.ok(new OwnerAuthResponse("Successfully Authenticated Owner" + email));
 	}
 
+	//Getting owner details.
 	@GetMapping("/owner")
 	public List<OwnerInformation> findAll() {
 		return ownerService.getOwnerInfos();

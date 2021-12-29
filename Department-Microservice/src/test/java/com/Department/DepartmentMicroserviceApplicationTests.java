@@ -43,7 +43,7 @@ class DepartmentMicroserviceApplicationTests {
 								.of(new Department(1, "Cooking", "Cooking Decsription", 10),
 									new Department(1, "Cooking", "Cooking Decsription", 10))
 								.collect(Collectors.toList()));
-		assertEquals(1, service.getAlldept().size());
+		assertEquals(2, service.getAlldept().size());
 	}
 
 	/*

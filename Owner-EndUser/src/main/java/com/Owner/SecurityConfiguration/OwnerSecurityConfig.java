@@ -28,12 +28,29 @@ public class OwnerSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		
+		
+	   //authorizeRequests() Allows restricting access based upon the HttpServletRequest using RequestMatcher implementations.
+		
+	   //permitAll() This will allow the public access that is anyone can access endpoint PUBLIC_URL without authentication.
+		
+	   //http.csrf().disable() 
+	   //It is to use CSRF protection for any request that could be processed by a browser by normal users. 
+	   //If you are only creating a service that is used by non-browser clients, you will likely want to disable CSRF protection.
+		
+	   //.antMatchers() is a Springboot HTTP method used to configure the URL paths from which the Springboot application security should permit requests based on the user's roles.
+		
+	   //.antmatchers() method is an overloaded method that receives both the HTTP request methods and the specific URLs as its arguments.
+		
+  	   //.permitAll()- It will configure the authorization so that all requests are allowed on that particular path. 
+		
+	   //anyRequest(). authenticated() is that any request must be authenticated otherwise my Spring app will return a 401 response.
+		
+	   //and() method is used to concatenate multiple configurer of Spring Security. 
 
 		http.csrf().disable().authorizeRequests().antMatchers("/Owner/addOwner", "/Owner/auth").permitAll().anyRequest()
 				.authenticated().and().formLogin();
 	}
-
-	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return NoOpPasswordEncoder.getInstance();

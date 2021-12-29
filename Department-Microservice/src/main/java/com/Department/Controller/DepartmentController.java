@@ -23,35 +23,40 @@ public class DepartmentController {
 	@Autowired
 	Departmentservice service;
 
+	// Getting  Hello Message.
 	@GetMapping("/hello")
 	public String hello() {
 		return "Hello Department!!";
 	}
 
+	// Adding department details.
 	@PostMapping("/add")
 	public Department addDept(@RequestBody Department dept) {
 		return this.service.addDepartment(dept);
 	}
 
+	// Fetching all the department details.
 	@GetMapping("/findAll")
 	public DepartmentList getDepartment() {
-
 		DepartmentList list = new DepartmentList();
 		list.setAlldept(this.service.getAlldept());
 		return list;
 	}
 
+	// Fetching details by using departmentId.
+	// In order to avoid NullPointerException we use Optional<>.
 	@GetMapping("/findById/{id}")
 	public Optional<Department> getDepartment(@PathVariable("id") String id) {
-
 		return this.service.getDepartment(Long.parseLong(id));
 	}
 
+	// Updating department details.
 	@PutMapping("/update")
 	public Department updateDepartment(@RequestBody Department dept) {
 		return this.service.updateDepartment(dept);
 	}
 
+	// Deleting department by using particular departmentId.
 	@DeleteMapping("/delete/{id}")
 	public String deleteDepartment(@PathVariable("id") String id) {
 		return this.service.deleteDepartment(Long.parseLong(id));
