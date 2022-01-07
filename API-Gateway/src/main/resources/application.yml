@@ -2,7 +2,7 @@ spring:
   application:
     name: Api-Gateway
     
-# It provides a library for building API gateways(Building blocks of the gateway).    
+   
   cloud:
     gateway:
       routes:

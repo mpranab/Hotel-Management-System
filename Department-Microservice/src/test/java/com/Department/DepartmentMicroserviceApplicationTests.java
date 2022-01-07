@@ -41,7 +41,7 @@ class DepartmentMicroserviceApplicationTests {
 				.thenReturn(
 						(List<Department>) Stream
 								.of(new Department(1, "Cooking", "Cooking Decsription", 10),
-									new Department(1, "Cooking", "Cooking Decsription", 10))
+									new Department(2, "Cleaning", "Cleaning Decsription", 12))
 								.collect(Collectors.toList()));
 		assertEquals(2, service.getAlldept().size());
 	}
@@ -71,6 +71,6 @@ class DepartmentMicroserviceApplicationTests {
 	/*
 	 * @Test public void deleteDeptTest() { Department dept=new
 	 * Department(1,"Cooking","Cooking Decsription",10);
-	 * service.deleteDepartment(dept); verify(repo,times(1)).delete(dept); }
+	 * service.deleteDepartment(dept); verify(repo.times(1)).delete(dept); }
 	 */
 }

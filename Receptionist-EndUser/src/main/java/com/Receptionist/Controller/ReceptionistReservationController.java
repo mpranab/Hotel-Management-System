@@ -15,7 +15,7 @@ import com.Receptionist.Models.Reservation;
 import com.Receptionist.Models.ReservationList;
 
 @RestController
-@RequestMapping("/Receptionist/reservation")
+@RequestMapping("/reservation")
 public class ReceptionistReservationController {
 
 	@Autowired
@@ -34,25 +34,25 @@ public class ReceptionistReservationController {
 
 	@PutMapping("/updateReservation")
 	public Reservation updateReservation(@RequestBody Reservation book) {
-		rest.put("http://http://localhost:8084/reservation/updateReservation/", book, Reservation.class);
+		rest.put("http://localhost:8084/reservation/updateReservation/", book, Reservation.class);
 		return book;
 	}
 
 	@DeleteMapping("/cancelReservation/{id}")
 	public String deleteReservation(@PathVariable("id") String id) {
-		rest.delete("http://http://localhost:8084/reservation/cancelReservation/" + id);
+		rest.delete("http://localhost:8084/reservation/cancelReservation/" + id);
 		return "Deleted room " + id;
 	}
 
 	@GetMapping("/ShowAllReservations")
 	public ReservationList getResList() {
-		return rest.getForObject("http://http://localhost:8084/reservation/ShowAllReservations/",
+		return rest.getForObject("http://localhost:8084/reservation/ShowAllReservations/",
 				ReservationList.class);
 	}
 
 	@GetMapping("/getByreservation/{id}")
 	public Reservation getReservation(@PathVariable("id") String id) {
-		return rest.getForObject("http://http://localhost:8084/reservation/getByreservation/" + id, Reservation.class);
+		return rest.getForObject("http://localhost:8084/reservation/getByreservation/" + id, Reservation.class);
 
 	}
 
