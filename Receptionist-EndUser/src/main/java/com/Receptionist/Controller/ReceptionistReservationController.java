@@ -1,6 +1,7 @@
 package com.Receptionist.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import com.Receptionist.Models.Reservation;
 import com.Receptionist.Models.ReservationList;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/reservation")
 public class ReceptionistReservationController {
 

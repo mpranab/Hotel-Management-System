@@ -17,7 +17,7 @@ import com.Room.Models.Room;
 import com.Room.Models.RoomList;
 import com.Room.Service.Roomservice;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/rooms")
 public class RoomController {
