@@ -3,9 +3,11 @@ package com.Manager.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,50 +19,83 @@ import com.Manager.Models.ManagerInformation;
 import com.Manager.Repository.ManagerRepository;
 import com.Manager.SecurityConfiguration.ManagerAuthResponse;
 import com.Manager.Service.ManagerService;
+import com.Manager.Models.JwtRequest;
+import com.Manager.Models.JwtResponse;
+import com.Manager.Models.ManagerInformation;
+import com.Manager.Repository.ManagerRepository;
+import com.Manager.Service.ManagerService;
+import com.Manager.helper.JwtUtil;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("Manager")
 public class ManagerController {
 
 	@Autowired
-	private ManagerService managerService;
+	private ManagerService userservice;
 	@Autowired
-	private ManagerRepository managerRepo;
+	private ManagerRepository ownerRepo;
 	@Autowired
-	private AuthenticationManager authenticationManager;
+	private AuthenticationManager authenticates;;
+	@Autowired
+	JwtUtil jwtutil;
 
-	@PostMapping("/addManager")
-	private ResponseEntity<?> saveManagerInfo(@RequestBody ManagerInformation managerInfo) {
-		String email = managerInfo.getEmail();
-		String password = managerInfo.getPassword();
-		ManagerInformation manager1 = new ManagerInformation();
-		manager1.setEmail(email);
-		manager1.setPassword(password);
+	@PostMapping("/subs")
+	private ResponseEntity<JwtResponse>subscribeClient(@RequestBody JwtRequest authreq){
+		ManagerInformation usermodel =new ManagerInformation();
+		System.out.println(authreq);
+
+		
+		usermodel.setUsername(authreq.getUsername());
+		usermodel.setPassword(authreq.getPassword());
+		usermodel.setMobileNumber(authreq.getMobileNumber());
+		usermodel.setEmail(authreq.getEmail());
+		
+		
 		try {
-
-			managerRepo.save(managerInfo);
-		} catch (Exception e) {
-			return ResponseEntity.ok(new ManagerAuthResponse("Error creating Manager " + email));
+			ownerRepo.save(usermodel);
 		}
-		return ResponseEntity.ok(new ManagerAuthResponse("Successfully created Manager " + email));
-	}
+		catch(Exception e){
+			return new ResponseEntity<JwtResponse>(new JwtResponse
+					("Error during subscription ") , HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<JwtResponse>(new JwtResponse
+				("Successfully authenticated " +authreq.getUsername()), HttpStatus.OK);
 
+	}
+	
+	
 	@PostMapping("/auth")
-	private ResponseEntity<?> authManager(@RequestBody ManagerInformation managerInfo) {
-		String email = managerInfo.getEmail();
-		String password = managerInfo.getPassword();
+	private ResponseEntity<?> authenticateClient(@RequestBody JwtRequest authreq){
+		String email=authreq.getEmail();
+		String password= authreq.getPassword();
+		System.out.println(authreq);
+		
+			authenticates.authenticate(new UsernamePasswordAuthenticationToken(email, password));
+				
+		
+		
+		UserDetails userdetails= userservice.loadUserByUsername(email);
+		
+		String jwt = jwtutil.generateToken(userdetails);
+		
+		return ResponseEntity.ok(new JwtResponse(jwt));
+	}
+	
+	@GetMapping("/test")
+	private String testingtoken() {
 		try {
-			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
-		} catch (Exception e) {
-			return ResponseEntity.ok(new ManagerAuthResponse("Error during Manager Authentication " + email));
+			return "Testing Successful...!";	
 		}
-		return ResponseEntity.ok(new ManagerAuthResponse("Successfully Authenticated Manager " + email));
+		catch(Exception e) {
+			return "Please login first..!";
+		}
 	}
-
-	@GetMapping("/manager")
-	public List<ManagerInformation> findAll() {
-		return managerService.getmanagerInfos();
+	
+	@GetMapping("/dashboard")
+	private String dashboard() {
+		return "Welcome to dashboard...!";
 	}
-
+	
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 /*import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;*/
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import com.Receptionist.Repository.ReceptionistRepository;
 import com.Receptionist.Service.ReceptionistService;*/
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/Receptionist")
 public class ReceptionistController {
 	/*

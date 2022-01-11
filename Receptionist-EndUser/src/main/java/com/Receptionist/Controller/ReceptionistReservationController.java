@@ -16,8 +16,8 @@ import com.Receptionist.Models.Reservation;
 import com.Receptionist.Models.ReservationList;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/reservation")
+@CrossOrigin(origins = "*")
+@RequestMapping("/Receptionist/reservation")
 public class ReceptionistReservationController {
 
 	@Autowired
